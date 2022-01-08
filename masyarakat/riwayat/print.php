@@ -2,10 +2,6 @@
 include '../../config/config.php';
 include '../../config/koneksi.php';
 
-$no = 1;
-
-$data = $koneksi->query("SELECT * FROM perusahaan  ORDER BY id_perusahaan DESC");
-
 $bln = array(
     '01' => 'Januari',
     '02' => 'Februari',
@@ -35,43 +31,61 @@ $bln = array(
 </head>
 
 <body>
-<img src="<?=base_url('assets/dist/img/logo_pln.jpg')?>" align="left" width="90" height="90">
+
+<img src="<?=base_url('assets/dist/img/logo.png')?>" align="left" width="90" height="100">
   <p align="center"><b>
-    <font size="7">PT. GERAI INDAH MARABAHAN</font> <br> <br> <br> <br>
+    <font size="5">PEMERINTAH KABUPATEN TAPIN  </font> <br> 
+    <font size="5">DINAS TENAGA KERJA</font><br><br><br>   
     <hr size="2px" color="black">
-    <center><font size="2">Alamat : Jl. AES Nasution, Marabahan Kota, Marabahan Kabupaten Barito Kuala Kalimantan Selatan </font></center>
+    <center><font size="2">Alamat :  Jl.Gubernur H.Aberani Sulaiman No.129</font></center>
     <hr size="2px" color="black">
   </b></p>
-    <p align="center"><b>
-            <font size="5">Output Perusahaan</font> <br>
-            <hr size="2px" color="black">
-        </b></p>
-
     <div class="row">
         <div class="col-sm-12">
             <div class="card-box table-responsive">
                 <table border="1" cellspacing="0" width="100%">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Perusahaan</th>
-                            <th>Bidang Perusahaan</th>
-                            <th>Alamat</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <?php while ($row = mysqli_fetch_array($data)) { ?>
-                            <tr>
-                                <td align="center"><?= $no++ ?></td>
-                                <td><?= $row['nama_perusahaan'] ?></td>
-                                <td><?= $row['bidang_perusahaan'] ?></td>
-                                <td><?= $row['alamat_perusahaan'] ?></td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-
-                </table>
+                                            <thead class="bg-green">
+                                                <tr align="center">
+                                                    <th>No</th>
+                                                    <th>Nomor Antrian</th>
+                                                    <th>Informasi</th>
+                                                    <th>Tanggal</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <?php
+                                            $no = 1;
+                                            $data = $koneksi->query("SELECT * FROM pendaftaran AS p
+                                            LEFT JOIN masyarakat AS pl ON p.id_masyarakat = pl.id_masyarakat 
+                                            WHERE p.status_pendaftaran = 'Selesai' AND p.id_masyarakat = '$_SESSION[id_masyarakat]' ORDER BY p.id_pendaftaran DESC");
+                                            while ($row = $data->fetch_array()) {
+                                            ?>
+                                                <tbody style="background-color: white">
+                                                    <tr>
+                                                        <td align="center"><?= $no++ ?></td>
+                                                        <td align="center"><h1><?= $row['nomor_antrian'] ?></h1></td>
+                                                        <td>
+                                                            <ul>
+                                                            <li>KTP :  &#10003;</li>
+                                                            <li>KK :  &#10003;</li>
+                                                            <li>PAS FOTO :  &#10003;</li>
+                                                            <li>Ket : <?= $row['ket'] ?></li>
+                                                            </ul>
+                                                        </td>
+                                                        <td>
+                                                            <ul>
+                                                            <li>Tanggal Pendaftaran : <?= $row['tgl_pendaftaran'] ?></li>
+                                                            <li>Tanggal Pembuatan : <?= $row['tgl_buat'] ?></li>
+                                                            <li>Tanggal Ambil : <?= $row['tgl_ambil'] ?></li>
+                                                            </ul>
+                                                        </td>
+                                                        <td align="center"><?= $row['status_pendaftaran'] ?></td>
+                                                        
+                                                       
+                                                    </tr>
+                                                </tbody>
+                                            <?php } ?>
+                                        </table>
 
             </div>
         </div>
@@ -82,11 +96,11 @@ $bln = array(
 
     </div>
     <div style="text-align: center; display: inline-block; float: right;">
-  <h5>
-    Banjarmasin , <?php echo tgl_indo(date('Y-m-d')); ?><br>
+    <h5>
+    Tapin , <?php echo tgl_indo(date('Y-m-d')); ?><br>
     
     <br><br><br><br>
-    Pimpinan
+    Kepala Dinas
   </h5>
 
 </div>

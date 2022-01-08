@@ -4,8 +4,6 @@ include '../../config/koneksi.php';
 
 $no = 1;
 
-$data = $koneksi->query("SELECT * FROM perusahaan  ORDER BY id_perusahaan DESC");
-
 $bln = array(
     '01' => 'Januari',
     '02' => 'Februari',
@@ -35,44 +33,49 @@ $bln = array(
 </head>
 
 <body>
-<img src="<?=base_url('assets/dist/img/logo_pln.jpg')?>" align="left" width="90" height="90">
-  <p align="center"><b>
-    <font size="7">PT. GERAI INDAH MARABAHAN</font> <br> <br> <br> <br>
+
+<img src="<?=base_url('assets/dist/img/logo.png')?>" align="left" width="90" height="100">
+<p align="center"><b>
+    <font size="5">PEMERINTAH KABUPATEN TAPIN  </font> <br> 
+    <font size="5">DINAS TENAGA KERJA</font><br><br><br>   
     <hr size="2px" color="black">
-    <center><font size="2">Alamat : Jl. AES Nasution, Marabahan Kota, Marabahan Kabupaten Barito Kuala Kalimantan Selatan </font></center>
+    <center><font size="2">Alamat :  Jl.Gubernur H.Aberani Sulaiman No.129</font></center>
     <hr size="2px" color="black">
   </b></p>
-    <p align="center"><b>
-            <font size="5">Output Perusahaan</font> <br>
-            <hr size="2px" color="black">
-        </b></p>
-
     <div class="row">
         <div class="col-sm-12">
             <div class="card-box table-responsive">
-                <table border="1" cellspacing="0" width="100%">
-                    <thead>
+            <table border="1" cellspacing="0" width="100%">
+            <thead class="bg-green">
+                    <tr align="center">
+                        <th>No</th>
+                        <th>Masyarakat </th>
+                        <th>username </th>
+                        <th>E-mail</th>
+                    </tr>
+                </thead>
+                <?php
+                $no = 1;
+                $data = $koneksi->query("SELECT * FROM masyarakat AS p
+                LEFT JOIN user AS u ON p.id_user = u.id_user
+                ORDER BY p.id_masyarakat DESC");
+                while ($row = $data->fetch_array()) {
+                ?>
+                    <tbody style="background-color: white">
                         <tr>
-                            <th>No</th>
-                            <th>Nama Perusahaan</th>
-                            <th>Bidang Perusahaan</th>
-                            <th>Alamat</th>
+                            <td align="center"><?= $no++ ?></td>
+                            <td>
+                                Nama : <?= $row['nama_masyarakat'] ?><br>
+                                NIK : <?= $row['nik'] ?><br>
+                                Telp/WA : <?= $row['no_wa'] ?><br>
+                                Status : <b><?= $row['status'] ?></b><br>
+                            </td>
+                            <td><b>ID : <?= $row['id_user'] ?> | Username : <?= $row['username'] ?></b></td>
+                            <td><?= $row['email'] ?></td>
                         </tr>
-                    </thead>
-
-                    <tbody>
-                        <?php while ($row = mysqli_fetch_array($data)) { ?>
-                            <tr>
-                                <td align="center"><?= $no++ ?></td>
-                                <td><?= $row['nama_perusahaan'] ?></td>
-                                <td><?= $row['bidang_perusahaan'] ?></td>
-                                <td><?= $row['alamat_perusahaan'] ?></td>
-                            </tr>
-                        <?php } ?>
                     </tbody>
-
+                <?php } ?>
                 </table>
-
             </div>
         </div>
     </div>
@@ -83,10 +86,10 @@ $bln = array(
     </div>
     <div style="text-align: center; display: inline-block; float: right;">
   <h5>
-    Banjarmasin , <?php echo tgl_indo(date('Y-m-d')); ?><br>
+    Tapin , <?php echo tgl_indo(date('Y-m-d')); ?><br>
     
     <br><br><br><br>
-    Pimpinan
+    Kepala Dinas
   </h5>
 
 </div>

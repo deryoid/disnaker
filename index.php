@@ -116,7 +116,7 @@ include 'templates/head.php';
                 <h3><span class="info-box-text">SELAMAT DATANG DI PELAYANAN DINAS TENAGA KERJA KABUPATEN TAPIN</span></h3>
                 <!-- <span class="info-box-number">41,410</span> -->
                 <?php if (isset($_SESSION['pesan']) && $_SESSION['pesan'] <> '') { ?>
-                  <div class="alert alert-success success-alert" role="alert">
+                  <div class="alert alert-info success-alert" role="alert">
                     <small><i class="fa fa-check"> <?= $_SESSION['pesan']; ?></i></small>
                   </div>
                 <?php $_SESSION['pesan'] = '';

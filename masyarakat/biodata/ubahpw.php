@@ -6,7 +6,7 @@
           include '../../templates/navbar.php';
           include '../../templates/sidebar.php';  
 
-$datau = $koneksi->query("SELECT * FROM user AS u LEFT JOIN pelanggan AS p ON u.id_user = p.id_user WHERE u.id_user = '$data[id_user]'")->fetch_array();
+$datau = $koneksi->query("SELECT * FROM user AS u LEFT JOIN masyarakat AS p ON u.id_user = p.id_user WHERE u.id_user = '$data[id_user]'")->fetch_array();
 
 
 

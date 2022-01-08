@@ -106,11 +106,12 @@ include '../../templates/head.php';
                                                         <td align="center"><span class="badge badge-success"><?= $row['status_pendaftaran'] ?></span></td>
                                                         
                                                         <td align="center">
-                                                            <?php if($row['status_pendaftaran'] == 'Selesai'){
-
-                                                            }else{?>
+                                                            <?php if($row['status_pendaftaran'] == 'Selesai'){ ?>
+                                                             <a href="printdetail?id=<?= $row['id_pendaftaran'] ?>" class="btn btn-warning btn-sm" target="blank" title="Cetak Kartu"><i class="fa fa-id-card"> Cetak Kartu</i></a>
+                                                            <?php }else{?>
                                                             <a href="edit?id=<?= $row['id_pendaftaran'] ?>" class="btn btn-success btn-sm" title="Edit"><i class="fa fa-id-card"> Pengambilan</i></a>
                                                             <?php }?>
+                                                            
                                                         </td>
                                                     </tr>
                                                 </tbody>

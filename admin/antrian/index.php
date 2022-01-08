@@ -49,7 +49,9 @@ include '../../templates/head.php';
                     <div class="row">
                         <div class="col-12">
                             <div class="card card-primary card-outline">
-                                
+                                <div class="card-header">
+                                    <a href="print" target="blank" class="btn bg-info"><i class="fa fa-print"> Cetak</i></a>
+                                </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     <?php

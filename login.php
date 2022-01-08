@@ -68,8 +68,8 @@ require 'config/config.php';
           </div>
 
           <button type="submit" name="login" class="btn btn-default btn-block bg-gradient-green btn-xm"><i class="fa fa-sign-in-alt mr-1"></i>Masuk</button>
-          <a href="index" class="btn btn-default btn-block bg-gradient-green btn-xm"><i class="fa fa-home"></i> Kembali</a>
-          <br>
+          <a href="lupass" class="btn btn-default btn-block bg-gradient-warning btn-xm"><i class="fa fa-key"></i> Lupa Password</a><br>
+          <a href="index" class="btn btn-default btn-block bg-gradient-blue btn-xm"><i class="fa fa-home"></i> Kembali</a><br>
         </form>
 
       </div>

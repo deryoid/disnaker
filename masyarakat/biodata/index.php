@@ -34,7 +34,7 @@
             <h3 class="card-title float-right">
                 <!-- <a href="ubahpw" class="btn btn-info"><i class="fa fa-key mr-1"></i>Ubah Password</a> -->
                 <a href="edit" class="btn btn-success"><i class="fa fa-edit mr-1"></i>Update Biodata Masyarakat</a>
-                <!-- <a href="print?id=<?= $data['id_mhs'];?>" class="btn btn-primary" target="blank"><i class="fa fa-print mr-1"></i>Print Biodata</a> -->
+                <a href="print?id=<?= $data['id_masyarakat'];?>" class="btn btn-primary" target="blank"><i class="fa fa-print mr-1"></i>Print Biodata</a>
             </h3>
         </div>
 

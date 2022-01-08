@@ -49,48 +49,24 @@ $bln = array(
             <thead class="bg-green">
                                                 <tr align="center">
                                                     <th>No</th>
-                                                    <th>Nomor Antrian</th>
-                                                    <th>Persyaratan</th>
-                                                    <th>Tanggal</th>
-                                                    <th>Status</th>
-                                                    <th>Opsi</th>
+                                                    <th>Username </th>
+                                                    <th>Role</th>
                                                 </tr>
                                             </thead>
                                             <?php
                                             $no = 1;
-                                            $data = $koneksi->query("SELECT * FROM pendaftaran AS p
-                                            LEFT JOIN masyarakat AS pl ON p.id_masyarakat = pl.id_masyarakat 
-                                            WHERE p.status_pendaftaran = 'Proses'");
+                                            $data = $koneksi->query("SELECT * FROM user");
                                             while ($row = $data->fetch_array()) {
                                             ?>
                                                 <tbody style="background-color: white">
                                                     <tr>
                                                         <td align="center"><?= $no++ ?></td>
-                                                        <td align="center"><h1><?= $row['nomor_antrian'] ?></h1></td>
-                                                        <td>
-                                                            <ul>
-                                                            <li>KTP : &#10003;</li>
-                                                            <li>KK : &#10003;</li>
-                                                            <li>PAS FOTO : &#10003;</li>
-                                                            <li>Ket : <?= $row['ket'] ?></li>
-                                                            </ul>
-                                                        </td>
-                                                        <td>
-                                                            <ul>
-                                                            <li>Tanggal Pembuatan : <?= $row['tgl_buat'] ?></li>
-                                                            <li>Tanggal Ambil : <?= $row['tgl_ambil'] ?></li>
-                                                            </ul>
-                                                        </td>
-                                                        <td align="center"><span class="badge badge-primary"><?= $row['status_pendaftaran'] ?></span></td>
-                                                        
-                                                        <td align="center">
-                                                            <a href="edit?id=<?= $row['id_pendaftaran'] ?>" class="btn btn-success btn-sm" title="Edit"><i class="fa fa-edit"> Selesai</i></a>
-                                                        
-                                                        </td>
+                                                        <td><?= $row['username'] ?></td>
+                                                        <td><?= $row['role'] ?></td>
                                                     </tr>
                                                 </tbody>
                                             <?php } ?>
-                </table>
+                                        </table>
             </div>
         </div>
     </div>
@@ -100,7 +76,7 @@ $bln = array(
 
     </div>
     <div style="text-align: center; display: inline-block; float: right;">
-  <h5>
+    <h5>
     Tapin , <?php echo tgl_indo(date('Y-m-d')); ?><br>
     
     <br><br><br><br>
