@@ -87,11 +87,11 @@ include '../../templates/head.php';
                                                         <td><?= $row['username'] ?></td>
                                                         <td><?= $row['role'] ?></td>
                                                         <td align="center">
-                                                            <?php if ($row['role'] != 'Pelanggan') { ?>
+                                                            <?php if ($row['role'] != 'Masyarakat') { ?>
                                                                 <a href="edit?id=<?= $row['id_user'] ?>" class="btn btn-success btn-sm" title="Edit"><i class="fa fa-edit"></i></a>
-                                                            <?php }else{ ?>
-                                                            <a href="edit?id=<?= $row['id_user'] ?>" class="btn btn-success btn-sm" title="Edit"><i class="fa fa-edit"></i></a>
-                                                            <a href="hapus?id=<?= $row['id_user'] ?>" class="btn btn-danger btn-sm alert-hapus" title="Hapus"><i class="fa fa-trash"></i></a>
+                                                            <?php } else { ?>
+                                                                <a href="edit?id=<?= $row['id_user'] ?>" class="btn btn-success btn-sm" title="Edit"><i class="fa fa-edit"></i></a>
+                                                                <a href="hapus?id=<?= $row['id_user'] ?>" class="btn btn-danger btn-sm alert-hapus" title="Hapus"><i class="fa fa-trash"></i></a>
                                                             <?php } ?>
                                                         </td>
                                                     </tr>
