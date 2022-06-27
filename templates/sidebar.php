@@ -43,7 +43,7 @@
             <a href="<?= base_url('admin/index') ?>" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
               <p>
-                Home
+                Beranda
               </p>
             </a>
           </li>
@@ -64,6 +64,14 @@
                 </a>
               </li>
             </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('admin/instansi') ?>" class="nav-link">
+                  <i class="fas fa-circle nav-icon"></i>
+                  <p>Instansi</p>
+                </a>
+              </li>
+            </ul>
           </li>
 
           <li class="nav-item">
@@ -79,23 +87,7 @@
             <a href="<?= base_url('admin/antrian') ?>" class="nav-link">
               <i class="nav-icon fas fa-address-card"></i>
               <p>
-                Pendaftaran/Pengajuan
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?= base_url('admin/prosesantrian') ?>" class="nav-link">
-              <i class="nav-icon fas fa-recycle"></i>
-              <p>
-                Proses Pembuatan
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?= base_url('admin/prosespengambilan') ?>" class="nav-link">
-              <i class="nav-icon fas fa-id-card"></i>
-              <p>
-                Pengambilan
+                Kartu Kerja
               </p>
             </a>
           </li>
