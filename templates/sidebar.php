@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-green elevation-2" >
+<aside class="main-sidebar sidebar-dark-green elevation-2">
   <!-- dark-primary  -->
   <!-- Brand Logo -->
   <a href="#" class="brand-link">
@@ -30,7 +30,7 @@
     </div>
 
 
-    
+
 
     <?php if ($_SESSION['role'] == "Administrator") { ?>
 
@@ -66,12 +66,19 @@
             </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?= base_url('admin/instansi') ?>" class="nav-link">
-                  <i class="fas fa-circle nav-icon"></i>
-                  <p>Instansi</p>
+                <a href="<?= base_url('admin/desa') ?>" class="nav-link">
+                  <i class="fas fa-chalkboard nav-icon"></i>
+                  <p>Desa</p>
                 </a>
               </li>
             </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="<?= base_url('admin/instansi') ?>" class="nav-link">
+              <i class="fas fa-building nav-icon"></i>
+              <p>Instansi</p>
+            </a>
           </li>
 
           <li class="nav-item">
@@ -87,7 +94,7 @@
             <a href="<?= base_url('admin/antrian') ?>" class="nav-link">
               <i class="nav-icon fas fa-address-card"></i>
               <p>
-                Kartu Kerja
+                Antrian Cetak Kartu
               </p>
             </a>
           </li>
@@ -98,7 +105,7 @@
 
 
 
-    <?php } elseif ($_SESSION['role'] == "Masyarakat" ) { ?>
+    <?php } elseif ($_SESSION['role'] == "Masyarakat") { ?>
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
@@ -124,53 +131,52 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="<?= base_url('masyarakat/biodata') ?>" class="nav-link">
-                <i class="nav-icon fas fa-user"></i>
-                <p>
-                  Biodata 
-                </p>
-              </a>
+                  <i class="nav-icon fas fa-user"></i>
+                  <p>
+                    Biodata
+                  </p>
+                </a>
               </li>
               <li class="nav-item">
                 <a href="<?= base_url('masyarakat/biodata/ubahpw') ?>" class="nav-link">
                   <i class="nav-icon fas fa-lock"></i>
                   <p>
-                    Ganti Password 
+                    Ganti Password
                   </p>
                 </a>
               </li>
             </ul>
           </li>
-         
-          
-          <?php 
-          $data = $koneksi->query("SELECT * FROM masyarakat WHERE id_masyarakat = '$_SESSION[id_masyarakat]'")->fetch_array(); 
-          if ($data['status'] == 'Tidak Aktif' OR $data['status'] ==  NULL) {
 
-           }else{
+
+          <?php
+          $data = $koneksi->query("SELECT * FROM masyarakat WHERE id_masyarakat = '$_SESSION[id_masyarakat]'")->fetch_array();
+          if ($data['status'] == 'Tidak Aktif' or $data['status'] ==  NULL) {
+          } else {
           ?>
-          <li class="nav-item">
-            <a href="<?= base_url('masyarakat/pendaftaran') ?>" class="nav-link">
-              <i class="nav-icon fas fa-address-card"></i>
-              <p>
-                Pendaftaran/Pengajuan
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?= base_url('masyarakat/riwayat') ?>" class="nav-link">
-              <i class="nav-icon fas fa-check"></i>
-              <p>
-                Riwayat Pendaftaran
-              </p>
-            </a>
-          </li>
-        <?php }?>
+            <li class="nav-item">
+              <a href="<?= base_url('masyarakat/pendaftaran') ?>" class="nav-link">
+                <i class="nav-icon fas fa-address-card"></i>
+                <p>
+                  Pendaftaran/Pengajuan
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= base_url('masyarakat/riwayat') ?>" class="nav-link">
+                <i class="nav-icon fas fa-check"></i>
+                <p>
+                  Riwayat Pendaftaran
+                </p>
+              </a>
+            </li>
+          <?php } ?>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
 
-    <?php }elseif ($_SESSION['role'] == "Owner") {?>
-      
+    <?php } elseif ($_SESSION['role'] == "Owner") { ?>
+
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">

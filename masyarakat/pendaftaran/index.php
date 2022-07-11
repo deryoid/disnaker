@@ -54,7 +54,7 @@ include '../../templates/head.php';
                              LEFT JOIN masyarakat AS pl ON p.id_masyarakat = pl.id_masyarakat 
                              WHERE p.id_masyarakat = '$_SESSION[id_masyarakat]' ORDER BY p.id_pendaftaran DESC")->fetch_array();
 
-                                if ($p['status_pendaftaran'] == 'Dapat Diambil' or $p['status_pendaftaran'] == 'Selesai') {
+                                if (count($p) > 0) {
                                     echo "<div class='card-header'> 
                                 <h4> Anda Sudah melakukan Pengajuan Tidak Dapat Mendaftar Lagi.</h4>
                                 </div>";
@@ -84,75 +84,73 @@ include '../../templates/head.php';
                                     <div class="row">
 
                                         <?php foreach ($list as $l) { ?>
-                                            <div class="col-md-12">
-                                                <div class="card card-widget">
-                                                    <div class="card-header" style="background-color:green;">
-                                                        <div class="user-block">
-                                                            <img class="img-circle" src="<?= base_url() ?>/assets/dist/img/logo.png" alt="User Image">
-                                                            <span class="username"><a href="#" style="color:white;">Pendaftaran</a></span>
-                                                            <span class="description" style="color:white;">Tanggal pendaftaran <?php echo $l['tgl_pendaftaran']; ?></span>
-                                                        </div>
-                                                        <!-- /.user-block -->
-                                                        <div class="card-tools">
-                                                            <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Mark as read">
-                                                                <i class="far fa-circle"></i></button>
-                                                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                                                            </button>
-                                                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
-                                                            </button>
-                                                        </div>
-                                                        <!-- /.card-tools -->
-                                                    </div>
-                                                    <!-- /.card-header -->
-                                                    <div class="card-body">
-                                                        <!-- post text -->
-                                                        <h2><b>Nomor Antrian Anda : <?= $l['nomor_antrian'] ?></b></h2>
-                                                        <hr>
-                                                        <p>
-                                                            <tbody style="background-color: white">
-                                                                <tr>
 
+                                            <div class="card card-widget col-12">
+                                                <div class="card-header" style="background-color:green;">
+                                                    <div class="user-block">
+                                                        <img class="img-circle" src="<?= base_url() ?>/assets/dist/img/logo.png" alt="User Image">
+                                                        <span class="username"><a href="#" style="color:white;">Pendaftaran</a></span>
+                                                        <span class="description" style="color:white;">Tanggal pendaftaran <?php echo $l['tgl_pendaftaran']; ?></span>
+                                                    </div>
+                                                    <!-- /.user-block -->
+                                                    <div class="card-tools">
+                                                        <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Mark as read">
+                                                            <i class="far fa-circle"></i></button>
+                                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+                                                        </button>
+                                                    </div>
+                                                    <!-- /.card-tools -->
+                                                </div>
+                                                <!-- /.card-header -->
+                                                <div class="card-body">
+                                                    <div class="col-12">
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <tbody style="background-color: white">
                                                                     <ul>
                                                                         <b>
-                                                                            <li>KTP : <br><img style="text-align: center;" width="250px" height="300px" src="<?= base_url() ?>/filektp/<?= $l['ktp'] ?>"></li>
-                                                                            <li>KK : <br><img style="text-align: center;" width="250px" height="300px" src="<?= base_url() ?>/filekk/<?= $l['kk'] ?>"></li>
-                                                                            <li>PAS FOTO : <br><img style="text-align: center;" width="250px" height="300px" src="<?= base_url() ?>/filefoto/<?= $l['foto'] ?>"></li>
-                                                                            <hr>
-                                                                            <li>Keterangan : <?= $l['ket'] ?></li>
-                                                                            <hr>
-                                                                            <h5>
-                                                                                <li>Tanggal Dibuat :
-                                                                                    <?php
-                                                                                    if ($l['tgl_buat'] == NULL) {
-                                                                                        echo "<u>Menunggu Informasi</u>";
-                                                                                    } else {
-                                                                                        echo "Proses pembuatan pada, " . "<b>" . $l['tgl_buat'] . "</b>";
-                                                                                    }
-
-                                                                                    ?>
-                                                                                </li>
-                                                                                <li>Status : <b><?= $l['status_pendaftaran'] ?></b></li>
-                                                                                <?php if ($l['status_pendaftaran'] == 'Dapat Diambil') { ?>
-                                                                                    <li>Tanggal Ambil : <b><?= $l['tgl_ambil'] ?></b></li>
-                                                                                <?php } ?>
-                                                                                <br>
-                                                                                <?php if ($l['status_pendaftaran'] == 'Menunggu Antrian') { ?>
-                                                                                    <li><a href="hapus?id=<?= $l['id_pendaftaran'] ?>" class="btn btn-danger btn-sm alert-hapus" title="Hapus"><i class="fa fa-trash"></i> Batalkan Pendaftaran</a></li>
-                                                                                <?php } else {
-                                                                                } ?>
-
-                                                                            </h5>
+                                                                            <li>KTP : <br><img style="text-align: center;" width="250px" height="150px" src="<?= base_url() ?>/filektp/<?= $l['ktp'] ?>"></li>
+                                                                            <li>KK : <br><img style="text-align: center;" width="250px" height="150px" src="<?= base_url() ?>/filekk/<?= $l['kk'] ?>"></li>
+                                                                            <li>PAS FOTO : <br><img style="text-align: center;" width="150px" height="250px" src="<?= base_url() ?>/filefoto/<?= $l['foto'] ?>"></li>
                                                                         </b>
                                                                     </ul>
-                                                            </tbody>
-                                                        </p>
+                                                                </tbody>
+                                                            </div>
+                                                            <!-- /.card -->
+                                                            <div class="col-6">
+                                                                <h2><b>Nomor Antrian Anda : <?= $l['nomor_antrian'] ?></b></h2>
+                                                                <h5>
+                                                                    <li>Keterangan : <?= $l['ket'] ?></li>
+                                                                    <li>Tanggal Dibuat :
+                                                                        <?php
+                                                                        if ($l['tgl_buat'] == NULL) {
+                                                                            echo "<u>Menunggu Informasi</u>";
+                                                                        } else {
+                                                                            echo "Proses pembuatan pada, " . "<b>" . $l['tgl_buat'] . "</b>";
+                                                                        }
 
+                                                                        ?>
+                                                                    </li>
+                                                                    <li>Status : <b><?= $l['status_pendaftaran'] ?></b></li>
+                                                                    <?php if ($l['status_pendaftaran'] == 'Dapat Diambil') { ?>
+                                                                        <li>Tanggal Ambil : <b><?= $l['tgl_ambil'] ?></b></li>
+                                                                    <?php } ?>
+                                                                    <br>
+                                                                    <?php if ($l['status_pendaftaran'] == 'Menunggu Antrian') { ?>
+                                                                        <li><a href="hapus?id=<?= $l['id_pendaftaran'] ?>" class="btn btn-danger btn-sm alert-hapus" title="Hapus"><i class="fa fa-trash"></i> Batalkan Pendaftaran</a></li>
+                                                                    <?php } else {
+                                                                    } ?>
+
+                                                                </h5>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.card -->
                                                     </div>
-                                                    <!-- /.card -->
-
                                                 </div>
-                                                <!-- /.col -->
                                             </div>
+                                            <!-- post text -->
                                         <?php } ?>
 
                                     </div>

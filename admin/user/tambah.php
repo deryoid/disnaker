@@ -61,39 +61,38 @@ include '../../templates/head.php';
                                     <!-- form start -->
                                     <div class="card-body" style="background-color: white;">
 
-                                    <div class="form-group row">
-                                        <label class="col-sm-1 col-form-label">Username</label>
-                                        <div class="col-sm-4">
-                                        <input type="text" class="form-control" name="username" required="">
+                                        <div class="form-group row">
+                                            <label class="col-sm-1 col-form-label">Username</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" name="username" required="">
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="form-group row">
-                                        <label class="col-sm-1 col-form-label">Password</label>
-                                        <div class="col-sm-4">
-                                        <input type="password" class="form-control form-pass" name="password" required="">
-                                        <div class="border-checkbox-group border-checkbox-group-primary">
-                                        <small>
-                                            <input class="border-checkbox form-cek" type="checkbox" id="checkbox1">
-                                            <label class="border-checkbox-label" for="checkbox1">Tampilkan Password</label>
-                                            </small>
+                                        <div class="form-group row">
+                                            <label class="col-sm-1 col-form-label">Password</label>
+                                            <div class="col-sm-4">
+                                                <input type="password" class="form-control form-pass" name="password" required="">
+                                                <div class="border-checkbox-group border-checkbox-group-primary">
+                                                    <small>
+                                                        <input class="border-checkbox form-cek" type="checkbox" id="checkbox1">
+                                                        <label class="border-checkbox-label" for="checkbox1">Tampilkan Password</label>
+                                                    </small>
+                                                </div>
+                                            </div>
                                         </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-1 col-form-label">Role</label>
+                                            <div class="col-sm-3">
+                                                <select class="form-control select2" data-placeholder="Pilih Role" id="role" name="role" required="">
+                                                    <option value="">-Pilih-</option>
+                                                    <option value="Administrator">Administrator</option>
+                                                    <option value="Masyarakat">Masyarakat</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-1 col-form-label">Role</label>
-                                        <div class="col-sm-3">
-                                            <select class="form-control select2" data-placeholder="Pilih Role" id="role" name="role" required="">
-                                                <option value="">-Pilih-</option>
-                                                <option value="Administrator">Administrator</option>
-                                                <option value="Pelanggan">Pelanggan</option>
-                                                <option value="Owner">Owner</option>
-                                            </select>
-                                        </div>
-                                    </div>
 
 
-  
+
                                     </div>
                                     <!-- /.card-body -->
 
@@ -131,41 +130,40 @@ include '../../templates/head.php';
     <?php include_once "../../templates/script.php"; ?>
 
     <script>
-  $(document).ready(function(){       
-        $('.form-cek').click(function(){
-            if($(this).is(':checked')){
-                $('.form-pass').attr('type','text');
-            }else{
-                $('.form-pass').attr('type','password');
-            }
+        $(document).ready(function() {
+            $('.form-cek').click(function() {
+                if ($(this).is(':checked')) {
+                    $('.form-pass').attr('type', 'text');
+                } else {
+                    $('.form-pass').attr('type', 'password');
+                }
+            });
+
         });
-
-    });
-
-</script>
-<?php
-if (isset($_POST['submit'])) {
+    </script>
+    <?php
+    if (isset($_POST['submit'])) {
         $username = $_POST['username'];
         $password = md5($_POST['password']);
         $role  = $_POST['role'];
 
-    $submit = $koneksi->query("INSERT INTO user VALUES (
+        $submit = $koneksi->query("INSERT INTO user VALUES (
         NULL,
         '$username', 
         '$password', 
         '$role')");
 
-    if ($submit) {
-        if ($role == "Pelanggan"){
-        $tkn =  $koneksi->query("SELECT * FROM user ORDER BY id_user DESC LIMIT 1")->fetch_array();
-        $koneksi->query("INSERT INTO pelanggan (id_user) VALUES ('$tkn[id_user]')");
+        if ($submit) {
+            if ($role == "Masyarakat") {
+                $tkn =  $koneksi->query("SELECT * FROM user ORDER BY id_user DESC LIMIT 1")->fetch_array();
+                $koneksi->query("INSERT INTO masyarakat (id_user) VALUES ('$tkn[id_user]')");
+            }
+            $_SESSION['pesan'] = "Data Berhasil Ditambahkan";
+            echo "<script>window.location.replace('../user/');</script>";
+        }
     }
-        $_SESSION['pesan'] = "Data Berhasil Ditambahkan";
-        echo "<script>window.location.replace('../user/');</script>";
-    }
-}
-    
-?>
+
+    ?>
 </body>
 
 </html>

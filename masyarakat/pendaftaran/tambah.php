@@ -79,7 +79,7 @@ $no_antri = set_nomor_antri($ambilnomor);
                                     <!-- /.card-header -->
                                     <!-- form start -->
                                     <div class="card-body" style="background-color: white;">
-
+                                        <input type="hidden" name="id_masyarakat" value="<?php echo $_SESSION['id_masyarakat'] ?>">
                                         <div class="form-group row">
                                             <label for="" class="col-sm-2 col-form-label">Nomor Antrian</label>
                                             <div class="col-sm-10">
@@ -89,7 +89,7 @@ $no_antri = set_nomor_antri($ambilnomor);
                                         <div class="form-group row">
                                             <label for="" class="col-sm-2 col-form-label">KTP</label>
                                             <div class="col-sm-10">
-                                            <input type="file" class="form-control" id="ktp" name="ktp">
+                                                <input type="file" class="form-control" id="ktp" name="ktp">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -107,7 +107,7 @@ $no_antri = set_nomor_antri($ambilnomor);
                                         <div class="form-group row">
                                             <label for="" class="col-sm-2 col-form-label">Tanggal Pendaftaran</label>
                                             <div class="col-sm-10">
-                                                <input type="date" class="form-control" name="tgl_pendaftaran" value="<?php echo date('Y-m-d');?>" readonly>
+                                                <input type="date" class="form-control" name="tgl_pendaftaran" value="<?php echo date('Y-m-d'); ?>" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -116,7 +116,7 @@ $no_antri = set_nomor_antri($ambilnomor);
                                                 <textarea type="text" class="form-control" name="ket"></textarea>
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                     <!-- /.card-body -->
 
@@ -162,7 +162,7 @@ $no_antri = set_nomor_antri($ambilnomor);
         $id_masyarakat             = $_SESSION['id_masyarakat'];
 
         if (!empty($_FILES['ktp']['name'])) {
-          
+
             // UPLOAD file PEMOHON
             $ktp      = $_FILES['ktp']['name'];
             $x_ktp    = explode('.', $ktp);
@@ -216,9 +216,9 @@ $no_antri = set_nomor_antri($ambilnomor);
             } ,2000);   
             </script>";
             }
-        } 
-         if (!empty($_FILES['kk']['name'])) {
-          
+        }
+        if (!empty($_FILES['kk']['name'])) {
+
             // UPLOAD file PEMOHON
             $kk      = $_FILES['kk']['name'];
             $x_kk    = explode('.', $kk);
@@ -227,7 +227,7 @@ $no_antri = set_nomor_antri($ambilnomor);
             $size_kk = $_FILES['kk']['size'];
             $tmp_kk  = $_FILES['kk']['tmp_name'];
             $dir_kk  = '../../filekk/';
-            $allow_ext        = array('png', 'jpg','JPG', 'jpeg', 'zip', 'rar', 'pdf');
+            $allow_ext        = array('png', 'jpg', 'JPG', 'jpeg', 'zip', 'rar', 'pdf');
             $allow_size       = 2048 * 2048 * 1;
 
             if (in_array($ext_kk, $allow_ext) === true) {
@@ -271,9 +271,9 @@ $no_antri = set_nomor_antri($ambilnomor);
             } ,2000);   
             </script>";
             }
-        } 
+        }
         if (!empty($_FILES['foto']['name'])) {
-          
+
             // UPLOAD file PEMOHON
             $foto      = $_FILES['foto']['name'];
             $x_foto    = explode('.', $foto);
@@ -282,7 +282,7 @@ $no_antri = set_nomor_antri($ambilnomor);
             $size_foto = $_FILES['foto']['size'];
             $tmp_foto  = $_FILES['foto']['tmp_name'];
             $dir_foto  = '../../filefoto/';
-            $allow_ext        = array('png', 'jpg','JPG', 'jpeg', 'zip', 'rar', 'pdf');
+            $allow_ext        = array('png', 'jpg', 'JPG', 'jpeg', 'zip', 'rar', 'pdf');
             $allow_size       = 2048 * 2048 * 1;
 
             if (in_array($ext_foto, $allow_ext) === true) {
@@ -326,7 +326,7 @@ $no_antri = set_nomor_antri($ambilnomor);
             } ,2000);   
             </script>";
             }
-        } 
+        }
 
         $submit = $koneksi->query("INSERT INTO pendaftaran VALUES (
             NULL,
@@ -341,7 +341,7 @@ $no_antri = set_nomor_antri($ambilnomor);
             'Menunggu Antrian',
             '$id_masyarakat'
             )");
-        // var_dump($submit,$koneksi->error);
+        // var_dump($submit, $koneksi->error);
         // die();
         if ($submit) {
 

@@ -29,13 +29,13 @@ include '../../templates/head.php';
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Petugas</h1>
+                            <h1 class="m-0 text-dark">Instansi</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item active">Data Master</li>
-                                <li class="breadcrumb-item active">Petugas</li>
+                                <li class="breadcrumb-item active">Instansi</li>
                                 <li class="breadcrumb-item active">Tambah Data</li>
                             </ol>
                         </div><!-- /.col -->
@@ -55,7 +55,7 @@ include '../../templates/head.php';
                                 <!-- Horizontal Form -->
                                 <div class="card card-green">
                                     <div class="card-header">
-                                        <h3 class="card-title">Petugas</h3>
+                                        <h3 class="card-title">Instansi</h3>
                                     </div>
                                     <!-- /.card-header -->
                                     <!-- form start -->
@@ -70,7 +70,7 @@ include '../../templates/head.php';
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Info Instansi</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="info_instansi" required="">
+                                                <textarea class="form-control" name="info_instansi" required=""></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -125,7 +125,7 @@ include '../../templates/head.php';
     <?php
     if (isset($_POST['submit'])) {
         $nama_instansi = $_POST['nama_instansi'];
-        $info_instansi = md5($_POST['info_instansi']);
+        $info_instansi = $_POST['info_instansi'];
         $alamat_instansi  = $_POST['alamat_instansi'];
 
         $submit = $koneksi->query("INSERT INTO instansi VALUES (

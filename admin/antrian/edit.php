@@ -61,40 +61,42 @@ include '../../templates/head.php';
                                     <!-- form start -->
                                     <div class="card-body" style="background-color: white;">
 
-                                    <div class="form-group row">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped">
-                                        <tbody>
-                                        <tr>
-                                            <b>
-                                                <td><h2><b>Nomor Antrian Pendaftaran : <?= $row['nomor_antrian']?></b></h2></td>
-                                                <td>
-                                                    <ul>
-                                                    <li>KTP : <a href="<?= base_url(); ?>/filektp/<?= $row['ktp']?>" data-toggle="lightbox" data-title="ktp" data-gallery="galery" title="Lihat" target="blank"><i class="fa fa-file-archive"> Lihat KTP</i></a></li>
-                                                    <li>KK : <a href="<?= base_url(); ?>/filekk/<?= $row['kk']?>" data-toggle="lightbox" data-title="kk" data-gallery="galery" title="Lihat" target="blank"><i class="fa fa-file-archive"> Lihat KK</i></a></li>
-                                                    <li>PAS FOTO : <a href="<?= base_url(); ?>/filefoto/<?= $row['foto']?>" data-toggle="lightbox" data-title="foto" data-gallery="galery" title="Lihat" target="blank"><i class="fa fa-file-archive"> Lihat Foto</i></a></li>
-                                                    <li>Ket : <?= $row['ket'] ?></li>
-                                                    </ul>
-                                                </td>
-                                                <hr>
-                                                <td>Keterangan : <?= $row['ket'] ?></td>    
-                                                <hr>
-                                                <td>Tanggal Pendaftaran : 
-                                                    <?php 
-                                                    if ($row['tgl_pendaftaran'] == NULL)  {
-                                                        echo "<u>Menunggu Informasi</u>";
-                                                    } else{
-                                                        echo $row['tgl_pendaftaran'];
-                                                    }
-                                                    
-                                                    ?>
-                                                </td>    
-                                                <td>Status : <?= $row['status_pendaftaran'] ?></td> <br>
-                                            </b>
-                                        </tr>
-                                        </tbody>
-                                        </table>
-                                        </div>
+                                        <div class="form-group row">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered table-striped">
+                                                    <tbody>
+                                                        <tr>
+                                                            <b>
+                                                                <td>
+                                                                    <h2><b>Nomor Antrian Pendaftaran : <?= $row['nomor_antrian'] ?></b></h2>
+                                                                </td>
+                                                                <td>
+                                                                    <ul>
+                                                                        <li>KTP : <a href="<?= base_url(); ?>/filektp/<?= $row['ktp'] ?>" data-toggle="lightbox" data-title="ktp" data-gallery="galery" title="Lihat" target="blank"><i class="fa fa-file-archive"> Lihat KTP</i></a></li>
+                                                                        <li>KK : <a href="<?= base_url(); ?>/filekk/<?= $row['kk'] ?>" data-toggle="lightbox" data-title="kk" data-gallery="galery" title="Lihat" target="blank"><i class="fa fa-file-archive"> Lihat KK</i></a></li>
+                                                                        <li>PAS FOTO : <a href="<?= base_url(); ?>/filefoto/<?= $row['foto'] ?>" data-toggle="lightbox" data-title="foto" data-gallery="galery" title="Lihat" target="blank"><i class="fa fa-file-archive"> Lihat Foto</i></a></li>
+                                                                        <li>Ket : <?= $row['ket'] ?></li>
+                                                                    </ul>
+                                                                </td>
+                                                                <hr>
+                                                                <td><b>Keterangan : <?= $row['ket'] ?></b></td>
+                                                                <hr>
+                                                                <td>Tanggal Pendaftaran :
+                                                                    <?php
+                                                                    if ($row['tgl_pendaftaran'] == NULL) {
+                                                                        echo "<u>Menunggu Informasi</u>";
+                                                                    } else {
+                                                                        echo $row['tgl_pendaftaran'];
+                                                                    }
+
+                                                                    ?>
+                                                                </td>
+                                                                <td><b>Status : <?= $row['status_pendaftaran'] ?></b></td> <br>
+                                                            </b>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="" class="col-sm-2 col-form-label">Tanggal Mulai Pembuatan</label>
@@ -103,17 +105,26 @@ include '../../templates/head.php';
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="" class="col-sm-2 col-form-label">Status</label>
+                                            <label for="" class="col-sm-2 col-form-label">Tanggal Pengambilan</label>
                                             <div class="col-sm-10">
-                                            <select class="form-control" data-placeholder="Pilih" id="status_pendaftaran" name="status_pendaftaran">
-                                                   <option value="">Pilih</option>
-                                                    <option value="Proses" <?php if ($row['status_pendaftaran'] == "Proses") {
-                                                                            echo "selected";
-                                                                            } ?>>Proses</option>
-                                            </select>
+                                                <input type="date" class="form-control" name="tgl_ambil" value="<?= $row['tgl_ambil'] ?>">
                                             </div>
                                         </div>
-                                       
+                                        <div class="form-group row">
+                                            <label for="" class="col-sm-2 col-form-label">Status</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" data-placeholder="Pilih" id="status_pendaftaran" name="status_pendaftaran">
+                                                    <option value="">Pilih</option>
+                                                    <option value="Proses" <?php if ($row['status_pendaftaran'] == "Proses") {
+                                                                                echo "selected";
+                                                                            } ?>>Proses</option>
+                                                    <option value="Selesai" <?php if ($row['status_pendaftaran'] == "Selesai") {
+                                                                                echo "selected";
+                                                                            } ?>>Selesai</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
 
                                     </div>
                                     <!-- /.card-body -->
@@ -155,14 +166,17 @@ include '../../templates/head.php';
     <?php
     if (isset($_POST['submit'])) {
         $tgl_buat        = $_POST['tgl_buat'];
+        $tgl_ambil        = $_POST['tgl_ambil'];
         $status_pendaftaran        = $_POST['status_pendaftaran'];
 
         $submit = $koneksi->query("UPDATE pendaftaran SET  
                             tgl_buat = '$tgl_buat',
+                            tgl_ambil = '$tgl_ambil',
                             status_pendaftaran = '$status_pendaftaran'
                             WHERE 
                             id_pendaftaran = '$id'");
-
+        // var_dump($submit, $koneksi->error);
+        // die();
         if ($submit) {
             $_SESSION['pesan'] = "Data Sudah Diproses";
             echo "<script>window.location.replace('../antrian/');</script>";

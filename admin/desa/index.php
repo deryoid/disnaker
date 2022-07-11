@@ -30,12 +30,12 @@ include '../../templates/head.php';
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Pembuatan Baru</h1>
+                            <h1 class="m-0 text-dark">Desa</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <!-- <li class="breadcrumb-item"><a href="#">Data Master</a></li> -->
-                                <li class="breadcrumb-item active">Pembuatan Baru</li>
+                                <li class="breadcrumb-item"><a href="#">Data Master</a></li>
+                                <li class="breadcrumb-item active">Desa</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -48,9 +48,10 @@ include '../../templates/head.php';
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
-                            <div class="card card-primary card-outline">
+                            <div class="card card-success card-outline">
                                 <div class="card-header">
-                                    <a href="print" target="blank" class="btn bg-info"><i class="fa fa-print"> Cetak</i></a>
+                                    <a href="tambah" class="btn bg-green"><i class="fa fa-plus-circle"> Tambah Data</i></a>
+                                    <!-- <a href="print" target="blank" class="btn bg-info"><i class="fa fa-print"> Cetak</i></a> -->
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -70,42 +71,23 @@ include '../../templates/head.php';
                                             <thead class="bg-green">
                                                 <tr align="center">
                                                     <th>No</th>
-                                                    <th>Nomor Antrian</th>
-                                                    <th>Persyaratan</th>
-                                                    <th>Tanggal</th>
-                                                    <th>Status</th>
+                                                    <th>Nama Desa </th>
                                                     <th>Opsi</th>
                                                 </tr>
                                             </thead>
                                             <?php
                                             $no = 1;
-                                            $data = $koneksi->query("SELECT * FROM pendaftaran AS p
-                                            LEFT JOIN masyarakat AS pl ON p.id_masyarakat = pl.id_masyarakat ");
+                                            $data = $koneksi->query("SELECT * FROM desa ORDER BY id_desa ASC");
                                             while ($row = $data->fetch_array()) {
                                             ?>
                                                 <tbody style="background-color: white">
                                                     <tr>
                                                         <td align="center"><?= $no++ ?></td>
-                                                        <td align="center"><h1><?= $row['nomor_antrian'] ?></h1></td>
-                                                        <td>
-                                                            <ul>
-                                                            <li>KTP : <a href="<?= base_url(); ?>/filektp/<?= $row['ktp']?>" data-toggle="lightbox" data-title="ktp" data-gallery="galery" title="Lihat" target="blank"><i class="fa fa-file-archive"> Lihat KTP</i></a></li>
-                                                            <li>KK : <a href="<?= base_url(); ?>/filekk/<?= $row['kk']?>" data-toggle="lightbox" data-title="kk" data-gallery="galery" title="Lihat" target="blank"><i class="fa fa-file-archive"> Lihat KK</i></a></li>
-                                                            <li>PAS FOTO : <a href="<?= base_url(); ?>/filefoto/<?= $row['foto']?>" data-toggle="lightbox" data-title="foto" data-gallery="galery" title="Lihat" target="blank"><i class="fa fa-file-archive"> Lihat Foto</i></a></li>
-                                                            <li>Ket : <?= $row['ket'] ?></li>
-                                                            </ul>
-                                                        </td>
-                                                        <td>
-                                                            <ul>
-                                                            <li>Tanggal Pendaftaran : <?= $row['tgl_pendaftaran'] ?></li>
-                                                            <li>Tanggal Ambil : <?= $row['tgl_ambil'] ?></li>
-                                                            </ul>
-                                                        </td>
-                                                        <td align="center"><b><?= $row['status_pendaftaran'] ?></b></td>
-                                                        
+                                                        <td><?= $row['nama_desa'] ?></td>
                                                         <td align="center">
-                                                            <a href="edit?id=<?= $row['id_pendaftaran'] ?>" class="btn btn-primary btn-sm" title="Edit"><i class="fa fa-edit"> Proses</i></a>
-                                                            <!-- <a href="hapus?id=<?= $row['id_pendaftaran'] ?>" class="btn btn-danger btn-sm alert-hapus" title="Hapus"><i class="fa fa-trash"></i></a> -->
+                                                                <a href="edit?id=<?= $row['id_desa'] ?>" class="btn btn-success btn-sm" title="Edit"><i class="fa fa-edit"></i></a>
+                                                                <a href="hapus?id=<?= $row['id_desa'] ?>" class="btn btn-danger btn-sm alert-hapus" title="Hapus"><i class="fa fa-trash"></i></a>
+                                                        
                                                         </td>
                                                     </tr>
                                                 </tbody>

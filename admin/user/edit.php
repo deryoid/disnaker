@@ -64,42 +64,42 @@ $row = $data->fetch_array();
                                     <!-- /.card-header -->
                                     <!-- form start -->
                                     <div class="card-body" style="background-color: white;">
-                                    <div class="form-group row">
-                        <label class="col-sm-1 col-form-label">Username</label>
-                        <div class="col-sm-4">
-                        <input type="text" class="form-control" name="username" required="" value="<?= $row['username'] ?>">
-                        </div>
-                    </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-1 col-form-label">Username</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" name="username" required="" value="<?= $row['username'] ?>">
+                                            </div>
+                                        </div>
 
-                    <div class="form-group row">
-                        <label class="col-sm-1 col-form-label">Password</label>
-                        <div class="col-sm-4">
-                        <input type="password" class="form-control form-pass" name="password">
-                        <div class="border-checkbox-group border-checkbox-group-primary">
-                          <small>
-                            <input class="border-checkbox form-cek" type="checkbox" id="checkbox1">
-                            <label class="border-checkbox-label" for="checkbox1">Tampilkan Password</label>
-                            </small>
-                        </div>
-                        </div>
-                        <label style="color: red; font-style: italic; font-size: 12px;">* Kosongkan Password Jika Tidak Diubah</label>
-                    </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-1 col-form-label">Password</label>
+                                            <div class="col-sm-4">
+                                                <input type="password" class="form-control form-pass" name="password">
+                                                <div class="border-checkbox-group border-checkbox-group-primary">
+                                                    <small>
+                                                        <input class="border-checkbox form-cek" type="checkbox" id="checkbox1">
+                                                        <label class="border-checkbox-label" for="checkbox1">Tampilkan Password</label>
+                                                    </small>
+                                                </div>
+                                            </div>
+                                            <label style="color: red; font-style: italic; font-size: 12px;">* Kosongkan Password Jika Tidak Diubah</label>
+                                        </div>
 
-                    <div class="form-group row">
-                        <label class="col-sm-1 col-form-label">Role</label>
-                        <div class="col-sm-3">
-                            <select class="form-control select2" data-placeholder="Pilih Role" id="role" name="role" required="">
-                                    <option value="Administator" <?php if ($row['role'] == "Administator") {
-                                                              echo "selected";
-                                                            } ?>>Administator</option>
-                                    <option value="Teknisi" <?php if ($row['role'] == "Teknisi") {
-                                                                echo "selected";
-                                                              } ?>>Teknisi</option>
-                            </select>
-                        </div>
-                    </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-1 col-form-label">Role</label>
+                                            <div class="col-sm-3">
+                                                <select class="form-control select2" data-placeholder="Pilih Role" id="role" name="role" required="">
+                                                    <option value="Administator" <?php if ($row['role'] == "Administator") {
+                                                                                        echo "selected";
+                                                                                    } ?>>Administator</option>
+                                                    <option value="Masyarakat" <?php if ($row['role'] == "Masyarakat") {
+                                                                                    echo "selected";
+                                                                                } ?>>Masyarakat</option>
+                                                </select>
+                                            </div>
+                                        </div>
 
-  
+
                                     </div>
                                     <!-- /.card-body -->
 
@@ -136,49 +136,49 @@ $row = $data->fetch_array();
     <!-- jQuery -->
     <?php include_once "../../templates/script.php"; ?>
     <script>
-  $(document).ready(function(){       
-        $('.form-cek').click(function(){
-            if($(this).is(':checked')){
-                $('.form-pass').attr('type','text');
-            }else{
-                $('.form-pass').attr('type','password');
-            }
+        $(document).ready(function() {
+            $('.form-cek').click(function() {
+                if ($(this).is(':checked')) {
+                    $('.form-pass').attr('type', 'text');
+                } else {
+                    $('.form-pass').attr('type', 'password');
+                }
+            });
+
+            $('#role').on('change', function() {
+                if (this.value == '7') {
+                    $("#lembaga").slideDown("fast");
+                } else {
+                    $("#lembaga").slideUp("fast");
+                }
+
+            });
+
         });
+    </script>
 
-        $('#role').on('change', function() {
-            if ( this.value == '7'){
-            $("#lembaga").slideDown("fast");
-          }else{
-            $("#lembaga").slideUp("fast");
-        }
-       
-    });
-
-    });
-</script>
-
-<?php 
+    <?php
     if (isset($_POST['submit'])) {
         $username = $_POST['username'];
 
         if (!empty($_POST['password'])) {
-           $password = md5($_POST['password']);
-        }else{
+            $password = md5($_POST['password']);
+        } else {
             $password = $row['password'];
         }
         $role  = $_POST['role'];
 
 
-    $submit = $koneksi->query("UPDATE user SET username = '$username', password = '$password', role = '$role' WHERE id_user = '$id'");
+        $submit = $koneksi->query("UPDATE user SET username = '$username', password = '$password', role = '$role' WHERE id_user = '$id'");
 
 
-    if ($submit) {
-        $_SESSION['pesan'] = "Data Berhasil Diubah";
-        echo "<script>window.location.replace('../user/');</script>";
+        if ($submit) {
+            $_SESSION['pesan'] = "Data Berhasil Diubah";
+            echo "<script>window.location.replace('../user/');</script>";
+        }
     }
-}
 
-?>
+    ?>
 </body>
 
 </html>
