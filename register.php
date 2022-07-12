@@ -103,63 +103,63 @@ include 'templates/head.php';
           </div>
         </div>
       </div>
-        <!-- Main content -->
-        <section class="content">
-                <div class="container-fluid">
-                    <!-- left column -->
-                    <form class="form-horizontal" method="POST" action="" enctype="multipart/form-data">
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <!-- left column -->
+          <form class="form-horizontal" method="POST" action="" enctype="multipart/form-data">
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <!-- Horizontal Form -->
-                                <div class="card card-success">
-                                    <div class="card-header">
-                                        <h3 class="card-title">Pendaftaran Akun Masyarakat</h3>
-                                    </div>
-                                    <!-- /.card-header -->
-                                    <!-- form start -->
-                                    <div class="card-body" style="background-color: white;">
+            <div class="row">
+              <div class="col-md-6">
+                <!-- Horizontal Form -->
+                <div class="card card-success">
+                  <div class="card-header">
+                    <h3 class="card-title">Pendaftaran Akun Masyarakat</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <!-- form start -->
+                  <div class="card-body" style="background-color: white;">
 
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Username</label>
-                                        <div class="col-sm-8">
-                                        <input type="text" class="form-control" name="username" required="">
-                                        </div>
-                                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-2 col-form-label">Username</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" name="username" required="">
+                      </div>
+                    </div>
 
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Password</label>
-                                        <div class="col-sm-8">
-                                        <input type="password" class="form-control form-pass" name="password" required="">
-                                        <div class="border-checkbox-group border-checkbox-group-primary">
-                                        <small>
-                                            <input class="border-checkbox form-cek" type="checkbox" id="checkbox1">
-                                            <label class="border-checkbox-label" for="checkbox1">Tampilkan Password</label>
-                                            </small>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    <input type="hidden" class="form-control form-pass" name="role" value="Masyarakat">
-                                    </div>
-                                    <!-- /.card-body -->
-
-                                    <div class="card-footer" style="background-color: white;">
-                                        <a href="<?= base_url('index') ?>" class="btn bg-gradient-secondary float-right"><i class="fa fa-arrow-left"> Batal</i></a>
-                                        <button type="submit" name="submit" class="btn bg-gradient-success float-right mr-2"><i class="fa fa-save"> Daftar</i></button>
-                                    </div>
-                                    <!-- /.card-footer -->
-
-                                </div>
-
-                            </div>
-                            <!--/.col (left) -->
+                    <div class="form-group row">
+                      <label class="col-sm-2 col-form-label">Password</label>
+                      <div class="col-sm-8">
+                        <input type="password" class="form-control form-pass" name="password" required="">
+                        <div class="border-checkbox-group border-checkbox-group-primary">
+                          <small>
+                            <input class="border-checkbox form-cek" type="checkbox" id="checkbox1">
+                            <label class="border-checkbox-label" for="checkbox1">Tampilkan Password</label>
+                          </small>
                         </div>
+                      </div>
+                    </div>
+                    <input type="hidden" class="form-control form-pass" name="role" value="Masyarakat">
+                  </div>
+                  <!-- /.card-body -->
 
-                    </form>
+                  <div class="card-footer" style="background-color: white;">
+                    <a href="<?= base_url('index') ?>" class="btn bg-gradient-secondary float-right"><i class="fa fa-arrow-left"> Batal</i></a>
+                    <button type="submit" name="submit" class="btn bg-gradient-success float-right mr-2"><i class="fa fa-save"> Daftar</i></button>
+                  </div>
+                  <!-- /.card-footer -->
 
-                </div><!-- /.container-fluid -->
-            </section>
-            <!-- /.content -->
+                </div>
+
+              </div>
+              <!--/.col (left) -->
+            </div>
+
+          </form>
+
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
 
     </div>
     <!-- /.content-wrapper -->
@@ -178,25 +178,24 @@ include 'templates/head.php';
   <?php
   include 'templates/script.php';
   ?>
-  
+
   <script>
-  $(document).ready(function(){       
-        $('.form-cek').click(function(){
-            if($(this).is(':checked')){
-                $('.form-pass').attr('type','text');
-            }else{
-                $('.form-pass').attr('type','password');
-            }
-        });
+    $(document).ready(function() {
+      $('.form-cek').click(function() {
+        if ($(this).is(':checked')) {
+          $('.form-pass').attr('type', 'text');
+        } else {
+          $('.form-pass').attr('type', 'password');
+        }
+      });
 
     });
-
-</script>
-<?php
-if (isset($_POST['submit'])) {
-        $username = $_POST['username'];
-        $password = md5($_POST['password']);
-        $role  = $_POST['role'];
+  </script>
+  <?php
+  if (isset($_POST['submit'])) {
+    $username = $_POST['username'];
+    $password = md5($_POST['password']);
+    $role  = $_POST['role'];
 
     $submit = $koneksi->query("INSERT INTO user VALUES (
         NULL,
@@ -205,16 +204,16 @@ if (isset($_POST['submit'])) {
         '$role')");
 
     if ($submit) {
-        if ($role == "Masyarakat"){
+      if ($role == "Masyarakat") {
         $tkn =  $koneksi->query("SELECT * FROM user ORDER BY id_user DESC LIMIT 1")->fetch_array();
-        $koneksi->query("INSERT INTO masyarakat (id_user) VALUES ('$tkn[id_user]')");
+        $koneksi->query("INSERT INTO masyarakat (id_user, nama_masyarakat , status) VALUES ('$tkn[id_user]', '$tkn[username]', 'Tidak Aktif')");
+      }
+      $_SESSION['pesan'] = "Data Berhasil Ditambahkan";
+      echo "<script>window.location.replace('index');</script>";
     }
-        $_SESSION['pesan'] = "Data Berhasil Ditambahkan";
-        echo "<script>window.location.replace('index');</script>";
-    }
-}
-    
-?>
+  }
+
+  ?>
 </body>
 
 </html>

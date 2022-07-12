@@ -141,8 +141,7 @@ if (isset($_POST['submit'])) {
                             jk = '$jk',
                             alamat = '$alamat',
                             pekerjaan = '$pekerjaan', 
-                            no_wa = '$no_wa',
-                            status = 'Tidak Aktif'
+                            no_wa = '$no_wa'
                             WHERE id_masyarakat = '$data[id_masyarakat]'");
 
 

@@ -43,6 +43,7 @@ $bln = array(
                 <font size="2">Alamat : Jl.Gubernur H.Aberani Sulaiman No.129</font>
             </center>
             <hr size="2px" color="black">
+            <h3>Kartu Kerja Selesai Proses</h3>
         </b></p>
     <div class="row">
         <div class="col-sm-12">
@@ -51,27 +52,43 @@ $bln = array(
                     <thead class="bg-green">
                         <tr align="center">
                             <th>No</th>
-                            <th>Masyarakat </th>
-                            <th>E-mail</th>
+                            <th>Nomor Antrian</th>
+                            <th>Nama</th>
+                            <th>Persyaratan</th>
+                            <th>Tanggal</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <?php
                     $no = 1;
-                    $data = $koneksi->query("SELECT * FROM masyarakat AS p
-                LEFT JOIN user AS u ON p.id_user = u.id_user
-                ORDER BY p.id_masyarakat DESC");
+                    $data = $koneksi->query("SELECT * FROM pendaftaran AS p
+                    LEFT JOIN masyarakat AS pl ON p.id_masyarakat = pl.id_masyarakat 
+                                            WHERE p.status_pendaftaran = 'Selesai'");
                     while ($row = $data->fetch_array()) {
                     ?>
                         <tbody style="background-color: white">
                             <tr>
-                                <td align="center"><?= $no++ ?></td>
-                                <td>
-                                    Nama : <?= $row['nama_masyarakat'] ?><br>
-                                    NIK : <?= $row['nik'] ?><br>
-                                    Telp/WA : <?= $row['no_wa'] ?><br>
-                                    Status : <b><?= $row['status'] ?></b><br>
+                                <td align="center">
+                                    <h1><?= $row['nomor_antrian'] ?></h1>
                                 </td>
-                                <td align="center"><?= $row['email'] ?></td>
+                                <td align="center">
+                                    <h3><?= $row['nama_masyarakat'] ?></h3>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>KTP : &#10003;</li>
+                                        <li>KK : &#10003;</li>
+                                        <li>PAS FOTO : &#10003;</li>
+                                        <li>Ket : <?= $row['ket'] ?></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Tanggal Pendaftaran : <?= $row['tgl_pendaftaran'] ?></li>
+                                        <li>Tanggal Ambil : <?= $row['tgl_ambil'] ?></li>
+                                    </ul>
+                                </td>
+                                <td align="center"><b><?= $row['status_pendaftaran'] ?></b></td>
                             </tr>
                         </tbody>
                     <?php } ?>

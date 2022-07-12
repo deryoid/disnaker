@@ -2,8 +2,6 @@
 include '../../config/config.php';
 include '../../config/koneksi.php';
 
-$no = 1;
-
 $bln = array(
     '01' => 'Januari',
     '02' => 'Februari',
@@ -44,6 +42,8 @@ $bln = array(
             </center>
             <hr size="2px" color="black">
         </b></p>
+    Informasi Desa Pencari Kerja Terbanyak
+    <br>
     <div class="row">
         <div class="col-sm-12">
             <div class="card-box table-responsive">
@@ -51,27 +51,24 @@ $bln = array(
                     <thead class="bg-green">
                         <tr align="center">
                             <th>No</th>
-                            <th>Masyarakat </th>
-                            <th>E-mail</th>
+                            <th>Desa</th>
+                            <th>Jumlah Pelamar</th>
                         </tr>
                     </thead>
                     <?php
                     $no = 1;
-                    $data = $koneksi->query("SELECT * FROM masyarakat AS p
-                LEFT JOIN user AS u ON p.id_user = u.id_user
-                ORDER BY p.id_masyarakat DESC");
+                    $data = $koneksi->query("SELECT COUNT(pk.id_pencarian_kerja) AS totalpk, pk.id_desa, d.nama_desa FROM pencarian_kerja AS pk LEFT JOIN desa AS d ON pk.id_desa = d.id_desa 
+                    GROUP BY pk.id_desa ORDER BY COUNT(pk.id_pencarian_kerja) DESC
+                                            ");
                     while ($row = $data->fetch_array()) {
                     ?>
                         <tbody style="background-color: white">
                             <tr>
                                 <td align="center"><?= $no++ ?></td>
                                 <td>
-                                    Nama : <?= $row['nama_masyarakat'] ?><br>
-                                    NIK : <?= $row['nik'] ?><br>
-                                    Telp/WA : <?= $row['no_wa'] ?><br>
-                                    Status : <b><?= $row['status'] ?></b><br>
+                                    Asal : <?= $row['nama_desa'] ?>
                                 </td>
-                                <td align="center"><?= $row['email'] ?></td>
+                                <td align="center">Total Pelamar :<?= $row['totalpk'] ?></td>
                             </tr>
                         </tbody>
                     <?php } ?>

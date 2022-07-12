@@ -156,7 +156,7 @@ include '../../templates/head.php';
         if ($submit) {
             if ($role == "Masyarakat") {
                 $tkn =  $koneksi->query("SELECT * FROM user ORDER BY id_user DESC LIMIT 1")->fetch_array();
-                $koneksi->query("INSERT INTO masyarakat (id_user) VALUES ('$tkn[id_user]')");
+                $koneksi->query("INSERT INTO masyarakat (id_user, nama_masyarakat , status) VALUES ('$tkn[id_user]', '$tkn[username]', 'Tidak Aktif')");
             }
             $_SESSION['pesan'] = "Data Berhasil Ditambahkan";
             echo "<script>window.location.replace('../user/');</script>";

@@ -30,12 +30,12 @@ include '../../templates/head.php';
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Pembuatan Baru</h1>
+                            <h1 class="m-0 text-dark">Pencari Kerja</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <!-- <li class="breadcrumb-item"><a href="#">Data Master</a></li> -->
-                                <li class="breadcrumb-item active">Pembuatan Baru</li>
+                                <li class="breadcrumb-item active">Pencari Kerja</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -48,70 +48,58 @@ include '../../templates/head.php';
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
-                            <div class="card card-primary card-outline">
+                            <div class="card card-outline">
                                 <div class="card-header">
-                                    <a href="print" target="blank" class="btn bg-info"><i class="fa fa-print"> Cetak</i></a>
+                                    <?php if ($data['pekerjaan'] == 'Belum Bekerja') { ?>
+                                        <a href="tambah" class="btn bg-blue"><i class="fa fa-plus-circle"> Tambah Data</i></a>
+                                        <a href="print" target="blank" class="btn bg-blue"><i class="fa fa-print"> Cetak</i></a>
+                                    <?php } else {
+                                        echo "<h2>Anda Sudah Bekerja ..!</h2>";
+                                    } ?>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <?php
-                                    if (isset($_SESSION['pesan']) && $_SESSION['pesan'] <> '') {
-                                    ?>
-                                        <div class="alert alert-info alertinfo" role="alert">
-                                            <i class="fa fa-check-circle"> <?= $_SESSION['pesan']; ?></i>
-                                        </div>
-                                    <?php
-                                        $_SESSION['pesan'] = '';
-                                    }
-                                    ?>
-
                                     <div class="table-responsive">
                                         <table id="example1" class="table table-bordered table-striped">
                                             <thead class="bg-green">
                                                 <tr align="center">
                                                     <th>No</th>
-                                                    <th>Nomor Antrian</th>
-                                                    <th>Nama</th>
-                                                    <th>Persyaratan</th>
-                                                    <th>Tanggal</th>
-                                                    <th>Status</th>
+                                                    <th>Masyarakat</th>
+                                                    <th>Instansi</th>
+                                                    <th>Desa</th>
+                                                    <th>Surat Lamaran</th>
                                                     <th>Opsi</th>
                                                 </tr>
                                             </thead>
                                             <?php
                                             $no = 1;
-                                            $data = $koneksi->query("SELECT * FROM pendaftaran AS p
-                                            LEFT JOIN masyarakat AS pl ON p.id_masyarakat = pl.id_masyarakat");
+                                            $data = $koneksi->query("SELECT * FROM pencarian_kerja AS pk
+                                            LEFT JOIN masyarakat AS m ON pk.id_masyarakat = m.id_masyarakat 
+                                            LEFT JOIN instansi AS i ON pk.id_instansi = i.id_instansi
+                                            LEFT JOIN desa AS d ON pk.id_desa = d.id_desa
+                                            WHERE pk.id_masyarakat = '$_SESSION[id_masyarakat]'");
                                             while ($row = $data->fetch_array()) {
                                             ?>
                                                 <tbody style="background-color: white">
                                                     <tr>
                                                         <td align="center"><?= $no++ ?></td>
                                                         <td align="center">
-                                                            <h1><?= $row['nomor_antrian'] ?></h1>
-                                                        </td>
-                                                        <td align="center">
-                                                            <h4><?= $row['nama_masyarakat'] ?></h4>
-                                                        </td>
-                                                        <td>
-                                                            <ul>
-                                                                <li>KTP : <a href="<?= base_url(); ?>/filektp/<?= $row['ktp'] ?>" data-toggle="lightbox" data-title="ktp" data-gallery="galery" title="Lihat" target="blank"><i class="fa fa-file-archive"> Lihat KTP</i></a></li>
-                                                                <li>KK : <a href="<?= base_url(); ?>/filekk/<?= $row['kk'] ?>" data-toggle="lightbox" data-title="kk" data-gallery="galery" title="Lihat" target="blank"><i class="fa fa-file-archive"> Lihat KK</i></a></li>
-                                                                <li>PAS FOTO : <a href="<?= base_url(); ?>/filefoto/<?= $row['foto'] ?>" data-toggle="lightbox" data-title="foto" data-gallery="galery" title="Lihat" target="blank"><i class="fa fa-file-archive"> Lihat Foto</i></a></li>
-                                                                <li>Ket : <?= $row['ket'] ?></li>
-                                                            </ul>
+                                                            Nama : <?= $row['nama_masyarakat'] ?><br>
+                                                            NIK : <?= $row['nik'] ?><br>
+                                                            Telp/WA : <?= $row['no_wa'] ?><br>
                                                         </td>
                                                         <td>
-                                                            <ul>
-                                                                <li>Tanggal Pendaftaran : <?= $row['tgl_pendaftaran'] ?></li>
-                                                                <li>Tanggal Ambil : <?= $row['tgl_ambil'] ?></li>
-                                                            </ul>
+                                                            Nama Instansi: <?= $row['nama_instansi'] ?><br>
+                                                            Alamat : <?= $row['alamat_instansi'] ?><br>
+                                                            Info Lowongan : <?= $row['info_instansi'] ?><br>
                                                         </td>
-                                                        <td align="center"><b><?= $row['status_pendaftaran'] ?></b></td>
+                                                        <td>
+                                                            Asal : <?= $row['nama_desa'] ?>
+                                                        </td>
+                                                        <td align="center"><a href="<?= base_url(); ?>/filesuratlamaran/<?= $row['surat_lamaran'] ?>" data-toggle="lightbox" data-title="surat_lamaran" data-gallery="galery" title="Lihat" target="blank"><i class="fa fa-file-archive"> Lihat Lamaran</i></a></td>
 
                                                         <td align="center">
-                                                            <a href="edit?id=<?= $row['id_pendaftaran'] ?>" class="btn btn-primary btn-sm" title="Edit"><i class="fa fa-edit"> Proses</i></a>
-                                                            <!-- <a href="hapus?id=<?= $row['id_pendaftaran'] ?>" class="btn btn-danger btn-sm alert-hapus" title="Hapus"><i class="fa fa-trash"></i></a> -->
+                                                            <a href="hapus?id=<?= $row['id_pencarian_kerja'] ?>" class="btn btn-danger btn-sm alert-hapus" title="Hapus"><i class="fa fa-times-circle"></i> Batalkan Pengajuan </a>
                                                         </td>
                                                     </tr>
                                                 </tbody>

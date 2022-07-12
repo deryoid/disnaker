@@ -48,21 +48,14 @@ include '../templates/head.php';
 
 
           <div class="info-box bg-success">
-              <span class="info-box-icon"><i class="far fa-file-alt"></i></span>
+            <span class="info-box-icon"><i class="far fa-file-alt"></i></span>
 
-              <div class="info-box-content">
-                <h3><span class="info-box-text">"SELAMAT DATANG DI SISTEM PENGELOLAAN ANTRIAN"</span></h3>
-                <!-- <span class="info-box-number">41,410</span> -->
-
-                <div class="progress">
-                  <!-- <div class="progress-bar" style="width: 70%"></div> -->
-                </div>
-                <span class="progress-description">
-                  <!-- 70% Increase in 30 Days -->
-                </span>
-              </div>
-              <!-- /.info-box-content -->
+            <div class="info-box-content">
+              <h3><span class="info-box-text">"SELAMAT DATANG"</span></h3>
+            
             </div>
+            <!-- /.info-box-content -->
+          </div>
 
 
           <div class="row">
@@ -70,7 +63,7 @@ include '../templates/head.php';
               <div class="card">
                 <div class="card-body">
                   <center>
-                    <!-- <img src="<?= base_url() ?>/assets/dist/img/logo.jpeg" height="600" width="850"> -->
+                    <img src="<?= base_url() ?>/assets/dist/img/bg.jpeg" height="600" width="850">
                     <iframe width="100%" height="432" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                   </center>
                 </div>

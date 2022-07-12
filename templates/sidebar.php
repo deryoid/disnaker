@@ -98,6 +98,57 @@
               </p>
             </a>
           </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-print"></i>
+              <p>
+                Laporan
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('admin/masyarakat/print') ?>" target="blank" class="nav-link">
+                  <p>Masyarakat</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('admin/user/print') ?>" target="blank" class="nav-link">
+                  <p>Info User (Admin)</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('admin/antrian/print') ?>" target="blank" class="nav-link">
+                  <p>Informasi KK (Pengajuan Baru)</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('admin/antrian/printproses') ?>" target="blank" class="nav-link">
+                  <p>Informasi KK (Proses)</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('admin/antrian/printselesai') ?>" target="blank" class="nav-link">
+                  <p>Informasi KK (Selesai)</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('admin/pencarikerja/print') ?>" target="blank" class="nav-link">
+                  <p>Desa Pencari Kerja Terbanyak</p>
+                </a>
+              </li>
+            </ul>
+          </li>
 
         </ul>
       </nav>
@@ -163,10 +214,10 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?= base_url('masyarakat/riwayat') ?>" class="nav-link">
-                <i class="nav-icon fas fa-check"></i>
+              <a href="<?= base_url('masyarakat/pencarikerja') ?>" class="nav-link">
+                <i class="nav-icon fas fa-search"></i>
                 <p>
-                  Riwayat Pendaftaran
+                  Pencari Kerja
                 </p>
               </a>
             </li>

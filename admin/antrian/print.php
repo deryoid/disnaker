@@ -34,62 +34,64 @@ $bln = array(
 
 <body>
 
-<img src="<?=base_url('assets/dist/img/logo.png')?>" align="left" width="90" height="100">
-<p align="center"><b>
-    <font size="5">PEMERINTAH KABUPATEN TAPIN  </font> <br> 
-    <font size="5">DINAS TENAGA KERJA</font><br><br><br>   
-    <hr size="2px" color="black">
-    <center><font size="2">Alamat :  Jl.Gubernur H.Aberani Sulaiman No.129</font></center>
-    <hr size="2px" color="black">
-  </b></p>
+    <img src="<?= base_url('assets/dist/img/logo.png') ?>" align="left" width="90" height="100">
+    <p align="center"><b>
+            <font size="5">PEMERINTAH KABUPATEN TAPIN </font> <br>
+            <font size="5">DINAS TENAGA KERJA</font><br><br><br>
+            <hr size="2px" color="black">
+            <center>
+                <font size="2">Alamat : Jl.Gubernur H.Aberani Sulaiman No.129</font>
+            </center>
+            <hr size="2px" color="black">
+            <h3>Pengajuan Baru</h3>
+        </b></p>
     <div class="row">
         <div class="col-sm-12">
             <div class="card-box table-responsive">
-            <table border="1" cellspacing="0" width="100%">
-            <thead class="bg-green">
-                                                <tr align="center">
-                                                    <th>No</th>
-                                                    <th>Nomor Antrian</th>
-                                                    <th>Persyaratan</th>
-                                                    <th>Tanggal</th>
-                                                    <th>Status</th>
-                                                    <th>Opsi</th>
-                                                </tr>
-                                            </thead>
-                                            <?php
-                                            $no = 1;
-                                            $data = $koneksi->query("SELECT * FROM pendaftaran AS p
-                                            LEFT JOIN masyarakat AS pl ON p.id_masyarakat = pl.id_masyarakat 
+                <table border="1" cellspacing="0" width="100%">
+                    <thead class="bg-green">
+                        <tr align="center">
+                            <th>No</th>
+                            <th>Nomor Antrian</th>
+                            <th>Nama</th>
+                            <th>Persyaratan</th>
+                            <th>Tanggal</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <?php
+                    $no = 1;
+                    $data = $koneksi->query("SELECT * FROM pendaftaran AS p
+                    LEFT JOIN masyarakat AS pl ON p.id_masyarakat = pl.id_masyarakat 
                                             WHERE p.status_pendaftaran = 'Menunggu Antrian'");
-                                            while ($row = $data->fetch_array()) {
-                                            ?>
-                                                <tbody style="background-color: white">
-                                                    <tr>
-                                                        <td align="center"><?= $no++ ?></td>
-                                                        <td align="center"><h1><?= $row['nomor_antrian'] ?></h1></td>
-                                                        <td>
-                                                            <ul>
-                                                            <li>KTP : &#10003;</li>
-                                                            <li>KK : &#10003;</li>
-                                                            <li>PAS FOTO : &#10003;</li>
-                                                            <li>Ket : <?= $row['ket'] ?></li>
-                                                            </ul>
-                                                        </td>
-                                                        <td>
-                                                            <ul>
-                                                            <li>Tanggal Pembuatan : <?= $row['tgl_buat'] ?></li>
-                                                            <li>Tanggal Ambil : <?= $row['tgl_ambil'] ?></li>
-                                                            </ul>
-                                                        </td>
-                                                        <td align="center"><span class="badge badge-primary"><?= $row['status_pendaftaran'] ?></span></td>
-                                                        
-                                                        <td align="center">
-                                                            <a href="edit?id=<?= $row['id_pendaftaran'] ?>" class="btn btn-success btn-sm" title="Edit"><i class="fa fa-edit"> Selesai</i></a>
-                                                        
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            <?php } ?>
+                    while ($row = $data->fetch_array()) {
+                    ?>
+                        <tbody style="background-color: white">
+                            <tr>
+                                <td align="center">
+                                    <h1><?= $row['nomor_antrian'] ?></h1>
+                                </td>
+                                <td align="center">
+                                    <h3><?= $row['nama_masyarakat'] ?></h3>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>KTP : &#10003;</li>
+                                        <li>KK : &#10003;</li>
+                                        <li>PAS FOTO : &#10003;</li>
+                                        <li>Ket : <?= $row['ket'] ?></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Tanggal Pendaftaran : <?= $row['tgl_pendaftaran'] ?></li>
+                                        <li>Tanggal Ambil : <?= $row['tgl_ambil'] ?></li>
+                                    </ul>
+                                </td>
+                                <td align="center"><b><?= $row['status_pendaftaran'] ?></b></td>
+                            </tr>
+                        </tbody>
+                    <?php } ?>
                 </table>
             </div>
         </div>
@@ -100,14 +102,14 @@ $bln = array(
 
     </div>
     <div style="text-align: center; display: inline-block; float: right;">
-  <h5>
-    Tapin , <?php echo tgl_indo(date('Y-m-d')); ?><br>
-    
-    <br><br><br><br>
-    Kepala Dinas
-  </h5>
+        <h5>
+            Tapin , <?php echo tgl_indo(date('Y-m-d')); ?><br>
 
-</div>
+            <br><br><br><br>
+            Kepala Dinas
+        </h5>
+
+    </div>
 
 </body>
 
