@@ -52,7 +52,6 @@ $bln = array(
                     <thead class="bg-green">
                         <tr align="center">
                             <th>No</th>
-                            <th>Nomor Antrian</th>
                             <th>Nama</th>
                             <th>Persyaratan</th>
                             <th>Tanggal</th>
@@ -69,7 +68,7 @@ $bln = array(
                         <tbody style="background-color: white">
                             <tr>
                                 <td align="center">
-                                    <h1><?= $row['nomor_antrian'] ?></h1>
+                                    <h5><?= $no++ ?></h5>
                                 </td>
                                 <td align="center">
                                     <h3><?= $row['nama_masyarakat'] ?></h3>
@@ -84,7 +83,6 @@ $bln = array(
                                 </td>
                                 <td>
                                     <ul>
-                                        <li>Tanggal Pendaftaran : <?= $row['tgl_pendaftaran'] ?></li>
                                         <li>Tanggal Ambil : <?= $row['tgl_ambil'] ?></li>
                                     </ul>
                                 </td>

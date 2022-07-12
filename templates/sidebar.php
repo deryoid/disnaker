@@ -148,6 +148,21 @@
                 </a>
               </li>
             </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('admin/masyarakat/printsb') ?>" target="blank" class="nav-link">
+                  <p>Masyarakat (Sudah Bekerja)</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('admin/masyarakat/printbb') ?>" target="blank" class="nav-link">
+                  <p>Masyarakat (Belum Bekerja)</p>
+                </a>
+              </li>
+            </ul>
+
           </li>
 
         </ul>
